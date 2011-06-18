@@ -1,4 +1,3 @@
-
 ## About
 aws-apa is a library for Amazon Advertising Product API. This library supports all SOAP API using JAX-WS.
 
@@ -23,6 +22,7 @@ You can also set Accesskey ID, Secret Accesskey and Endpoint in the constructor,
 
 ### Item Search
 
+    AwsApaRequester requester = new AwsApaRequesterImpl();
     ItemSearchRequest request = new ItemSearchRequest();
     request.setSearchIndex("Books");
     request.setKeywords("Java");
@@ -30,6 +30,7 @@ You can also set Accesskey ID, Secret Accesskey and Endpoint in the constructor,
 
 ### Item Lookup
 
+    AwsApaRequester requester = new AwsApaRequesterImpl();
     String asin = "489471499X";
     ItemLookupRequest request = new ItemLookupRequest();
     request.getItemId().add(asin);
@@ -70,3 +71,7 @@ And add dependency.
 - JDK 1.6+
 - SLF4J
 - Commons Codec
+
+## License
+
+Licensed under the Apache License, Version 2.0.
