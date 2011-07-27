@@ -56,18 +56,6 @@ import javax.xml.bind.annotation.XmlType;
  *                             &lt;element name="Quantity" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *                             &lt;element name="AssociateTag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="ListItemId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                             &lt;element name="MetaData" maxOccurs="unbounded" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element name="Key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                       &lt;element name="Value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                     &lt;/sequence>
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -239,18 +227,6 @@ public class CartAddRequest {
      *                   &lt;element name="Quantity" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
      *                   &lt;element name="AssociateTag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="ListItemId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="MetaData" maxOccurs="unbounded" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="Key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                             &lt;element name="Value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                           &lt;/sequence>
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -319,18 +295,6 @@ public class CartAddRequest {
          *         &lt;element name="Quantity" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
          *         &lt;element name="AssociateTag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="ListItemId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="MetaData" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="Key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                   &lt;element name="Value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                 &lt;/sequence>
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -341,7 +305,7 @@ public class CartAddRequest {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = { "asin", "offerListingId", "quantity",
-                "associateTag", "listItemId", "metaData" })
+                "associateTag", "listItemId" })
         public static class Item {
 
             @XmlElement(name = "ASIN")
@@ -355,8 +319,6 @@ public class CartAddRequest {
             protected String associateTag;
             @XmlElement(name = "ListItemId")
             protected String listItemId;
-            @XmlElement(name = "MetaData")
-            protected List<CartAddRequest.Items.Item.MetaData> metaData;
 
             /**
              * Gets the value of the asin property.
@@ -461,112 +423,6 @@ public class CartAddRequest {
              */
             public void setListItemId(String value) {
                 this.listItemId = value;
-            }
-
-            /**
-             * Gets the value of the metaData property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list, not a
-             * snapshot. Therefore any modification you make to the returned
-             * list will be present inside the JAXB object. This is why there is
-             * not a <CODE>set</CODE> method for the metaData property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * 
-             * <pre>
-             * getMetaData().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link CartAddRequest.Items.Item.MetaData }
-             * 
-             * 
-             */
-            public List<CartAddRequest.Items.Item.MetaData> getMetaData() {
-                if (metaData == null) {
-                    metaData = new ArrayList<CartAddRequest.Items.Item.MetaData>();
-                }
-                return this.metaData;
-            }
-
-            /**
-             * <p>
-             * Java class for anonymous complex type.
-             * 
-             * <p>
-             * The following schema fragment specifies the expected content
-             * contained within this class.
-             * 
-             * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="Key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *         &lt;element name="Value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *       &lt;/sequence>
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
-             * </pre>
-             * 
-             * 
-             */
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "", propOrder = { "key", "value" })
-            public static class MetaData {
-
-                @XmlElement(name = "Key")
-                protected String key;
-                @XmlElement(name = "Value")
-                protected String value;
-
-                /**
-                 * Gets the value of the key property.
-                 * 
-                 * @return possible object is {@link String }
-                 * 
-                 */
-                public String getKey() {
-                    return key;
-                }
-
-                /**
-                 * Sets the value of the key property.
-                 * 
-                 * @param value
-                 *            allowed object is {@link String }
-                 * 
-                 */
-                public void setKey(String value) {
-                    this.key = value;
-                }
-
-                /**
-                 * Gets the value of the value property.
-                 * 
-                 * @return possible object is {@link String }
-                 * 
-                 */
-                public String getValue() {
-                    return value;
-                }
-
-                /**
-                 * Sets the value of the value property.
-                 * 
-                 * @param value
-                 *            allowed object is {@link String }
-                 * 
-                 */
-                public void setValue(String value) {
-                    this.value = value;
-                }
-
             }
 
         }

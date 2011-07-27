@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="URL" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Height" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}DecimalWithUnits"/>
- *         &lt;element name="Width" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}DecimalWithUnits"/>
+ *         &lt;element name="Height" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}DecimalWithUnits"/>
+ *         &lt;element name="Width" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}DecimalWithUnits"/>
  *         &lt;element name="IsVerified" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

@@ -36,12 +36,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Condition" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="SubCondition" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ConditionNote" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="MapPolicy" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="MapOffsiteMessagingOverride" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="WillShipExpedited" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="WillShipInternational" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,26 +45,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "condition", "subCondition", "conditionNote",
-        "mapPolicy", "mapOffsiteMessagingOverride", "willShipExpedited",
-        "willShipInternational" })
+@XmlType(name = "", propOrder = { "condition" })
 @XmlRootElement(name = "OfferAttributes")
 public class OfferAttributes {
 
     @XmlElement(name = "Condition")
     protected String condition;
-    @XmlElement(name = "SubCondition")
-    protected String subCondition;
-    @XmlElement(name = "ConditionNote")
-    protected String conditionNote;
-    @XmlElement(name = "MapPolicy")
-    protected String mapPolicy;
-    @XmlElement(name = "MapOffsiteMessagingOverride")
-    protected String mapOffsiteMessagingOverride;
-    @XmlElement(name = "WillShipExpedited")
-    protected Boolean willShipExpedited;
-    @XmlElement(name = "WillShipInternational")
-    protected Boolean willShipInternational;
 
     /**
      * Gets the value of the condition property.
@@ -91,132 +71,6 @@ public class OfferAttributes {
      */
     public void setCondition(String value) {
         this.condition = value;
-    }
-
-    /**
-     * Gets the value of the subCondition property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSubCondition() {
-        return subCondition;
-    }
-
-    /**
-     * Sets the value of the subCondition property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSubCondition(String value) {
-        this.subCondition = value;
-    }
-
-    /**
-     * Gets the value of the conditionNote property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getConditionNote() {
-        return conditionNote;
-    }
-
-    /**
-     * Sets the value of the conditionNote property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setConditionNote(String value) {
-        this.conditionNote = value;
-    }
-
-    /**
-     * Gets the value of the mapPolicy property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getMapPolicy() {
-        return mapPolicy;
-    }
-
-    /**
-     * Sets the value of the mapPolicy property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setMapPolicy(String value) {
-        this.mapPolicy = value;
-    }
-
-    /**
-     * Gets the value of the mapOffsiteMessagingOverride property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getMapOffsiteMessagingOverride() {
-        return mapOffsiteMessagingOverride;
-    }
-
-    /**
-     * Sets the value of the mapOffsiteMessagingOverride property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setMapOffsiteMessagingOverride(String value) {
-        this.mapOffsiteMessagingOverride = value;
-    }
-
-    /**
-     * Gets the value of the willShipExpedited property.
-     * 
-     * @return possible object is {@link Boolean }
-     * 
-     */
-    public Boolean isWillShipExpedited() {
-        return willShipExpedited;
-    }
-
-    /**
-     * Sets the value of the willShipExpedited property.
-     * 
-     * @param value
-     *            allowed object is {@link Boolean }
-     * 
-     */
-    public void setWillShipExpedited(Boolean value) {
-        this.willShipExpedited = value;
-    }
-
-    /**
-     * Gets the value of the willShipInternational property.
-     * 
-     * @return possible object is {@link Boolean }
-     * 
-     */
-    public Boolean isWillShipInternational() {
-        return willShipInternational;
-    }
-
-    /**
-     * Sets the value of the willShipInternational property.
-     * 
-     * @param value
-     *            allowed object is {@link Boolean }
-     * 
-     */
-    public void setWillShipInternational(Boolean value) {
-        this.willShipInternational = value;
     }
 
 }

@@ -38,15 +38,10 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="CartItemId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ASIN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ExchangeId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="MerchantId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="SellerId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SellerNickname" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Quantity" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ProductGroup" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ListOwner" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ListType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="MetaData" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -69,8 +64,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="Price" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
- *         &lt;element name="ItemTotal" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
+ *         &lt;element name="Price" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
+ *         &lt;element name="ItemTotal" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -80,22 +75,15 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CartItem", propOrder = { "cartItemId", "asin", "exchangeId",
-        "merchantId", "sellerId", "sellerNickname", "quantity", "title",
-        "productGroup", "listOwner", "listType", "metaData", "price",
-        "itemTotal" })
+@XmlType(name = "CartItem", propOrder = { "cartItemId", "asin",
+        "sellerNickname", "quantity", "title", "productGroup", "metaData",
+        "price", "itemTotal" })
 public class CartItem {
 
     @XmlElement(name = "CartItemId", required = true)
     protected String cartItemId;
     @XmlElement(name = "ASIN")
     protected String asin;
-    @XmlElement(name = "ExchangeId")
-    protected String exchangeId;
-    @XmlElement(name = "MerchantId")
-    protected String merchantId;
-    @XmlElement(name = "SellerId")
-    protected String sellerId;
     @XmlElement(name = "SellerNickname")
     protected String sellerNickname;
     @XmlElement(name = "Quantity", required = true)
@@ -104,10 +92,6 @@ public class CartItem {
     protected String title;
     @XmlElement(name = "ProductGroup")
     protected String productGroup;
-    @XmlElement(name = "ListOwner")
-    protected String listOwner;
-    @XmlElement(name = "ListType")
-    protected String listType;
     @XmlElement(name = "MetaData")
     protected CartItem.MetaData metaData;
     @XmlElement(name = "Price")
@@ -155,69 +139,6 @@ public class CartItem {
      */
     public void setASIN(String value) {
         this.asin = value;
-    }
-
-    /**
-     * Gets the value of the exchangeId property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getExchangeId() {
-        return exchangeId;
-    }
-
-    /**
-     * Sets the value of the exchangeId property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setExchangeId(String value) {
-        this.exchangeId = value;
-    }
-
-    /**
-     * Gets the value of the merchantId property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    /**
-     * Sets the value of the merchantId property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setMerchantId(String value) {
-        this.merchantId = value;
-    }
-
-    /**
-     * Gets the value of the sellerId property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    /**
-     * Sets the value of the sellerId property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSellerId(String value) {
-        this.sellerId = value;
     }
 
     /**
@@ -302,48 +223,6 @@ public class CartItem {
      */
     public void setProductGroup(String value) {
         this.productGroup = value;
-    }
-
-    /**
-     * Gets the value of the listOwner property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getListOwner() {
-        return listOwner;
-    }
-
-    /**
-     * Sets the value of the listOwner property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setListOwner(String value) {
-        this.listOwner = value;
-    }
-
-    /**
-     * Gets the value of the listType property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getListType() {
-        return listType;
-    }
-
-    /**
-     * Sets the value of the listType property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setListType(String value) {
-        this.listType = value;
     }
 
     /**

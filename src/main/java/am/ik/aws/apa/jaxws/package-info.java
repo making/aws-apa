@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://webservices.amazon.com/AWSECommerceService/2011-04-01", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://webservices.amazon.com/AWSECommerceService/2011-08-01", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package am.ik.aws.apa.jaxws;
 

@@ -35,11 +35,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="LowestPrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
- *         &lt;element name="HighestPrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
- *         &lt;element name="LowestSalePrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
- *         &lt;element name="HighestSalePrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Price" minOccurs="0"/>
- *         &lt;element name="SingleMerchantId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="LowestPrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
+ *         &lt;element name="HighestPrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
+ *         &lt;element name="LowestSalePrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
+ *         &lt;element name="HighestSalePrice" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Price" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -50,7 +49,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "lowestPrice", "highestPrice",
-        "lowestSalePrice", "highestSalePrice", "singleMerchantId" })
+        "lowestSalePrice", "highestSalePrice" })
 @XmlRootElement(name = "VariationSummary")
 public class VariationSummary {
 
@@ -62,8 +61,6 @@ public class VariationSummary {
     protected Price lowestSalePrice;
     @XmlElement(name = "HighestSalePrice")
     protected Price highestSalePrice;
-    @XmlElement(name = "SingleMerchantId")
-    protected String singleMerchantId;
 
     /**
      * Gets the value of the lowestPrice property.
@@ -147,27 +144,6 @@ public class VariationSummary {
      */
     public void setHighestSalePrice(Price value) {
         this.highestSalePrice = value;
-    }
-
-    /**
-     * Gets the value of the singleMerchantId property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSingleMerchantId() {
-        return singleMerchantId;
-    }
-
-    /**
-     * Sets the value of the singleMerchantId property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSingleMerchantId(String value) {
-        this.singleMerchantId = value;
     }
 
 }

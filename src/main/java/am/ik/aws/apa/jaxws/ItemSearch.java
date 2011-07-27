@@ -39,12 +39,11 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="MarketplaceDomain" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="AWSAccessKeyId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="SubscriptionId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="AssociateTag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="XMLEscaping" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Validate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Shared" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}ItemSearchRequest" minOccurs="0"/>
- *         &lt;element name="Request" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}ItemSearchRequest" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Shared" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}ItemSearchRequest" minOccurs="0"/>
+ *         &lt;element name="Request" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}ItemSearchRequest" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -55,8 +54,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "marketplaceDomain", "awsAccessKeyId",
-        "subscriptionId", "associateTag", "xmlEscaping", "validate", "shared",
-        "request" })
+        "associateTag", "xmlEscaping", "validate", "shared", "request" })
 @XmlRootElement(name = "ItemSearch")
 public class ItemSearch {
 
@@ -64,8 +62,6 @@ public class ItemSearch {
     protected String marketplaceDomain;
     @XmlElement(name = "AWSAccessKeyId")
     protected String awsAccessKeyId;
-    @XmlElement(name = "SubscriptionId")
-    protected String subscriptionId;
     @XmlElement(name = "AssociateTag")
     protected String associateTag;
     @XmlElement(name = "XMLEscaping")
@@ -117,27 +113,6 @@ public class ItemSearch {
      */
     public void setAWSAccessKeyId(String value) {
         this.awsAccessKeyId = value;
-    }
-
-    /**
-     * Gets the value of the subscriptionId property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSubscriptionId() {
-        return subscriptionId;
-    }
-
-    /**
-     * Sets the value of the subscriptionId property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSubscriptionId(String value) {
-        this.subscriptionId = value;
     }
 
     /**

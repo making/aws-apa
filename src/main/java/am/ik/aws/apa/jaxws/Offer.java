@@ -37,12 +37,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Merchant" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Seller" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}OfferAttributes" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}OfferListing" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}LoyaltyPoints" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Promotions" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Merchant" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}OfferAttributes" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}OfferListing" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}LoyaltyPoints" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Promotions" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,15 +51,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "merchant", "seller", "offerAttributes",
+@XmlType(name = "", propOrder = { "merchant", "offerAttributes",
         "offerListing", "loyaltyPoints", "promotions" })
 @XmlRootElement(name = "Offer")
 public class Offer {
 
     @XmlElement(name = "Merchant")
     protected Merchant merchant;
-    @XmlElement(name = "Seller")
-    protected Seller seller;
     @XmlElement(name = "OfferAttributes")
     protected OfferAttributes offerAttributes;
     @XmlElement(name = "OfferListing")
@@ -89,27 +86,6 @@ public class Offer {
      */
     public void setMerchant(Merchant value) {
         this.merchant = value;
-    }
-
-    /**
-     * Gets the value of the seller property.
-     * 
-     * @return possible object is {@link Seller }
-     * 
-     */
-    public Seller getSeller() {
-        return seller;
-    }
-
-    /**
-     * Sets the value of the seller property.
-     * 
-     * @param value
-     *            allowed object is {@link Seller }
-     * 
-     */
-    public void setSeller(Seller value) {
-        this.seller = value;
     }
 
     /**

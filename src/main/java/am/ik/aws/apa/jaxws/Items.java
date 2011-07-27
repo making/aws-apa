@@ -39,15 +39,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Request" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}CorrectedQuery" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Request" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}CorrectedQuery" minOccurs="0"/>
  *         &lt;element name="Qid" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="EngineQuery" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="TotalResults" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
  *         &lt;element name="TotalPages" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}SearchResultsMap" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Item" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}SearchBinSets" minOccurs="0"/>
+ *         &lt;element name="MoreSearchResultsUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}SearchResultsMap" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Item" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}SearchBinSets" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -58,8 +59,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "request", "correctedQuery", "qid",
-        "engineQuery", "totalResults", "totalPages", "searchResultsMap",
-        "item", "searchBinSets" })
+        "engineQuery", "totalResults", "totalPages", "moreSearchResultsUrl",
+        "searchResultsMap", "item", "searchBinSets" })
 @XmlRootElement(name = "Items")
 public class Items {
 
@@ -77,6 +78,8 @@ public class Items {
     @XmlElement(name = "TotalPages")
     @XmlSchemaType(name = "nonNegativeInteger")
     protected BigInteger totalPages;
+    @XmlElement(name = "MoreSearchResultsUrl")
+    protected String moreSearchResultsUrl;
     @XmlElement(name = "SearchResultsMap")
     protected SearchResultsMap searchResultsMap;
     @XmlElement(name = "Item")
@@ -208,6 +211,27 @@ public class Items {
      */
     public void setTotalPages(BigInteger value) {
         this.totalPages = value;
+    }
+
+    /**
+     * Gets the value of the moreSearchResultsUrl property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getMoreSearchResultsUrl() {
+        return moreSearchResultsUrl;
+    }
+
+    /**
+     * Sets the value of the moreSearchResultsUrl property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setMoreSearchResultsUrl(String value) {
+        this.moreSearchResultsUrl = value;
     }
 
     /**

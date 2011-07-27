@@ -47,20 +47,14 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}AudienceRating" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}AudienceRating" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Author" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Brand" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="BrowseNode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="City" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Composer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Condition" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Condition" minOccurs="0"/>
  *         &lt;element name="Conductor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Count" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="Cuisine" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}DeliveryMethod" minOccurs="0"/>
  *         &lt;element name="Director" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="FutureLaunchDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ISPUPostalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ItemPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *         &lt;element name="Keywords" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Manufacturer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -68,22 +62,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="MerchantId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="MinimumPrice" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
  *         &lt;element name="MusicLabel" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Neighborhood" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Orchestra" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="PostalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Power" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Publisher" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="RelatedItemPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}positiveIntegerOrAll" minOccurs="0"/>
+ *         &lt;element name="RelatedItemPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}positiveIntegerOrAll" minOccurs="0"/>
  *         &lt;element name="RelationshipType" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="ResponseGroup" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="ReviewSort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SearchIndex" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Sort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="State" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="TagPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="TagsPerPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="TagSort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="TextStream" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ReleaseDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="IncludeReviewsSummary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -99,14 +85,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ItemSearchRequest", propOrder = { "actor", "artist",
         "availability", "audienceRating", "author", "brand", "browseNode",
-        "city", "composer", "condition", "conductor", "count", "cuisine",
-        "deliveryMethod", "director", "futureLaunchDate", "ispuPostalCode",
-        "itemPage", "keywords", "manufacturer", "maximumPrice", "merchantId",
-        "minimumPrice", "musicLabel", "neighborhood", "orchestra",
-        "postalCode", "power", "publisher", "relatedItemPage",
-        "relationshipType", "responseGroup", "reviewSort", "searchIndex",
-        "sort", "state", "tagPage", "tagsPerPage", "tagSort", "textStream",
-        "title", "releaseDate", "includeReviewsSummary", "truncateReviewsAt" })
+        "composer", "condition", "conductor", "director", "itemPage",
+        "keywords", "manufacturer", "maximumPrice", "merchantId",
+        "minimumPrice", "musicLabel", "orchestra", "power", "publisher",
+        "relatedItemPage", "relationshipType", "responseGroup", "searchIndex",
+        "sort", "title", "releaseDate", "includeReviewsSummary",
+        "truncateReviewsAt" })
 public class ItemSearchRequest {
 
     @XmlElement(name = "Actor")
@@ -123,27 +107,14 @@ public class ItemSearchRequest {
     protected String brand;
     @XmlElement(name = "BrowseNode")
     protected String browseNode;
-    @XmlElement(name = "City")
-    protected String city;
     @XmlElement(name = "Composer")
     protected String composer;
     @XmlElement(name = "Condition")
     protected String condition;
     @XmlElement(name = "Conductor")
     protected String conductor;
-    @XmlElement(name = "Count")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger count;
-    @XmlElement(name = "Cuisine")
-    protected String cuisine;
-    @XmlElement(name = "DeliveryMethod")
-    protected String deliveryMethod;
     @XmlElement(name = "Director")
     protected String director;
-    @XmlElement(name = "FutureLaunchDate")
-    protected String futureLaunchDate;
-    @XmlElement(name = "ISPUPostalCode")
-    protected String ispuPostalCode;
     @XmlElement(name = "ItemPage")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger itemPage;
@@ -161,12 +132,8 @@ public class ItemSearchRequest {
     protected BigInteger minimumPrice;
     @XmlElement(name = "MusicLabel")
     protected String musicLabel;
-    @XmlElement(name = "Neighborhood")
-    protected String neighborhood;
     @XmlElement(name = "Orchestra")
     protected String orchestra;
-    @XmlElement(name = "PostalCode")
-    protected String postalCode;
     @XmlElement(name = "Power")
     protected String power;
     @XmlElement(name = "Publisher")
@@ -177,24 +144,10 @@ public class ItemSearchRequest {
     protected List<String> relationshipType;
     @XmlElement(name = "ResponseGroup")
     protected List<String> responseGroup;
-    @XmlElement(name = "ReviewSort")
-    protected String reviewSort;
     @XmlElement(name = "SearchIndex")
     protected String searchIndex;
     @XmlElement(name = "Sort")
     protected String sort;
-    @XmlElement(name = "State")
-    protected String state;
-    @XmlElement(name = "TagPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger tagPage;
-    @XmlElement(name = "TagsPerPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger tagsPerPage;
-    @XmlElement(name = "TagSort")
-    protected String tagSort;
-    @XmlElement(name = "TextStream")
-    protected String textStream;
     @XmlElement(name = "Title")
     protected String title;
     @XmlElement(name = "ReleaseDate")
@@ -361,27 +314,6 @@ public class ItemSearchRequest {
     }
 
     /**
-     * Gets the value of the city property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * Sets the value of the city property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setCity(String value) {
-        this.city = value;
-    }
-
-    /**
      * Gets the value of the composer property.
      * 
      * @return possible object is {@link String }
@@ -445,69 +377,6 @@ public class ItemSearchRequest {
     }
 
     /**
-     * Gets the value of the count property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getCount() {
-        return count;
-    }
-
-    /**
-     * Sets the value of the count property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setCount(BigInteger value) {
-        this.count = value;
-    }
-
-    /**
-     * Gets the value of the cuisine property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getCuisine() {
-        return cuisine;
-    }
-
-    /**
-     * Sets the value of the cuisine property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setCuisine(String value) {
-        this.cuisine = value;
-    }
-
-    /**
-     * Gets the value of the deliveryMethod property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getDeliveryMethod() {
-        return deliveryMethod;
-    }
-
-    /**
-     * Sets the value of the deliveryMethod property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setDeliveryMethod(String value) {
-        this.deliveryMethod = value;
-    }
-
-    /**
      * Gets the value of the director property.
      * 
      * @return possible object is {@link String }
@@ -526,48 +395,6 @@ public class ItemSearchRequest {
      */
     public void setDirector(String value) {
         this.director = value;
-    }
-
-    /**
-     * Gets the value of the futureLaunchDate property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getFutureLaunchDate() {
-        return futureLaunchDate;
-    }
-
-    /**
-     * Sets the value of the futureLaunchDate property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setFutureLaunchDate(String value) {
-        this.futureLaunchDate = value;
-    }
-
-    /**
-     * Gets the value of the ispuPostalCode property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getISPUPostalCode() {
-        return ispuPostalCode;
-    }
-
-    /**
-     * Sets the value of the ispuPostalCode property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setISPUPostalCode(String value) {
-        this.ispuPostalCode = value;
     }
 
     /**
@@ -718,27 +545,6 @@ public class ItemSearchRequest {
     }
 
     /**
-     * Gets the value of the neighborhood property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    /**
-     * Sets the value of the neighborhood property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setNeighborhood(String value) {
-        this.neighborhood = value;
-    }
-
-    /**
      * Gets the value of the orchestra property.
      * 
      * @return possible object is {@link String }
@@ -757,27 +563,6 @@ public class ItemSearchRequest {
      */
     public void setOrchestra(String value) {
         this.orchestra = value;
-    }
-
-    /**
-     * Gets the value of the postalCode property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    /**
-     * Sets the value of the postalCode property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setPostalCode(String value) {
-        this.postalCode = value;
     }
 
     /**
@@ -902,27 +687,6 @@ public class ItemSearchRequest {
     }
 
     /**
-     * Gets the value of the reviewSort property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getReviewSort() {
-        return reviewSort;
-    }
-
-    /**
-     * Sets the value of the reviewSort property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setReviewSort(String value) {
-        this.reviewSort = value;
-    }
-
-    /**
      * Gets the value of the searchIndex property.
      * 
      * @return possible object is {@link String }
@@ -962,111 +726,6 @@ public class ItemSearchRequest {
      */
     public void setSort(String value) {
         this.sort = value;
-    }
-
-    /**
-     * Gets the value of the state property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     * Sets the value of the state property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setState(String value) {
-        this.state = value;
-    }
-
-    /**
-     * Gets the value of the tagPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getTagPage() {
-        return tagPage;
-    }
-
-    /**
-     * Sets the value of the tagPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setTagPage(BigInteger value) {
-        this.tagPage = value;
-    }
-
-    /**
-     * Gets the value of the tagsPerPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getTagsPerPage() {
-        return tagsPerPage;
-    }
-
-    /**
-     * Sets the value of the tagsPerPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setTagsPerPage(BigInteger value) {
-        this.tagsPerPage = value;
-    }
-
-    /**
-     * Gets the value of the tagSort property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getTagSort() {
-        return tagSort;
-    }
-
-    /**
-     * Sets the value of the tagSort property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setTagSort(String value) {
-        this.tagSort = value;
-    }
-
-    /**
-     * Gets the value of the textStream property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getTextStream() {
-        return textStream;
-    }
-
-    /**
-     * Sets the value of the textStream property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setTextStream(String value) {
-        this.textStream = value;
     }
 
     /**

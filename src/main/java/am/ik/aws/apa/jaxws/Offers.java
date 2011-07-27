@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="TotalOffers" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
  *         &lt;element name="TotalOfferPages" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Offer" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="MoreOffersUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Offer" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,7 +52,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "totalOffers", "totalOfferPages", "offer" })
+@XmlType(name = "", propOrder = { "totalOffers", "totalOfferPages",
+        "moreOffersUrl", "offer" })
 @XmlRootElement(name = "Offers")
 public class Offers {
 
@@ -61,6 +63,8 @@ public class Offers {
     @XmlElement(name = "TotalOfferPages")
     @XmlSchemaType(name = "nonNegativeInteger")
     protected BigInteger totalOfferPages;
+    @XmlElement(name = "MoreOffersUrl")
+    protected String moreOffersUrl;
     @XmlElement(name = "Offer")
     protected List<Offer> offer;
 
@@ -104,6 +108,27 @@ public class Offers {
      */
     public void setTotalOfferPages(BigInteger value) {
         this.totalOfferPages = value;
+    }
+
+    /**
+     * Gets the value of the moreOffersUrl property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getMoreOffersUrl() {
+        return moreOffersUrl;
+    }
+
+    /**
+     * Sets the value of the moreOffersUrl property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setMoreOffersUrl(String value) {
+        this.moreOffersUrl = value;
     }
 
     /**

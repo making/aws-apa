@@ -36,12 +36,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="SwatchImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
- *         &lt;element name="SmallImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
- *         &lt;element name="ThumbnailImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
- *         &lt;element name="TinyImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
- *         &lt;element name="MediumImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
- *         &lt;element name="LargeImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Image" minOccurs="0"/>
+ *         &lt;element name="SwatchImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
+ *         &lt;element name="SmallImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
+ *         &lt;element name="ThumbnailImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
+ *         &lt;element name="TinyImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
+ *         &lt;element name="MediumImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
+ *         &lt;element name="LargeImage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Image" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="Category" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>

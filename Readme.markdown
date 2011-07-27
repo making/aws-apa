@@ -1,6 +1,8 @@
 ## About
 aws-apa is a library for Amazon Advertising Product API. This library supports all SOAP API using JAX-WS.
 
+Supports http://webservices.amazon.com/AWSECommerceService/2011-08-01
+
 ## Settings
 `am.ik.aws.apa.AwsApaRequesterImpl` is the main class to send requests to AWS. To use this class, some information is required.
 
@@ -62,7 +64,7 @@ And add dependency.
         <dependency>
             <groupId>am.ik.aws</groupId>
             <artifactId>aws-apa</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.1</version>
         </dependency>
     </dependencies>
 

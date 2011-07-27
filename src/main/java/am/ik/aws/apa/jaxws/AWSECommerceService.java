@@ -30,7 +30,7 @@ import javax.xml.ws.WebServiceFeature;
  * source version: 2.1
  * 
  */
-@WebServiceClient(name = "AWSECommerceService", targetNamespace = "http://webservices.amazon.com/AWSECommerceService/2011-04-01", wsdlLocation = "http://ecs.amazonaws.com/AWSECommerceService/AWSECommerceService.wsdl")
+@WebServiceClient(name = "AWSECommerceService", targetNamespace = "http://webservices.amazon.com/AWSECommerceService/2011-08-01", wsdlLocation = "http://ecs.amazonaws.com/AWSECommerceService/AWSECommerceService.wsdl")
 public class AWSECommerceService extends Service {
 
     private final static URL AWSECOMMERCESERVICE_WSDL_LOCATION;
@@ -58,7 +58,7 @@ public class AWSECommerceService extends Service {
 
     public AWSECommerceService() {
         super(AWSECOMMERCESERVICE_WSDL_LOCATION, new QName(
-                "http://webservices.amazon.com/AWSECommerceService/2011-04-01",
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
                 "AWSECommerceService"));
     }
 
@@ -69,7 +69,7 @@ public class AWSECommerceService extends Service {
     @WebEndpoint(name = "AWSECommerceServicePort")
     public AWSECommerceServicePortType getAWSECommerceServicePort() {
         return super.getPort(new QName(
-                "http://webservices.amazon.com/AWSECommerceService/2011-04-01",
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
                 "AWSECommerceServicePort"), AWSECommerceServicePortType.class);
     }
 
@@ -86,9 +86,201 @@ public class AWSECommerceService extends Service {
     public AWSECommerceServicePortType getAWSECommerceServicePort(
             WebServiceFeature... features) {
         return super.getPort(new QName(
-                "http://webservices.amazon.com/AWSECommerceService/2011-04-01",
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
                 "AWSECommerceServicePort"), AWSECommerceServicePortType.class,
                 features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortCA")
+    public AWSECommerceServicePortType getAWSECommerceServicePortCA() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortCA"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortCA")
+    public AWSECommerceServicePortType getAWSECommerceServicePortCA(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortCA"),
+                AWSECommerceServicePortType.class, features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortDE")
+    public AWSECommerceServicePortType getAWSECommerceServicePortDE() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortDE"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortDE")
+    public AWSECommerceServicePortType getAWSECommerceServicePortDE(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortDE"),
+                AWSECommerceServicePortType.class, features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortFR")
+    public AWSECommerceServicePortType getAWSECommerceServicePortFR() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortFR"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortFR")
+    public AWSECommerceServicePortType getAWSECommerceServicePortFR(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortFR"),
+                AWSECommerceServicePortType.class, features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortJP")
+    public AWSECommerceServicePortType getAWSECommerceServicePortJP() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortJP"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortJP")
+    public AWSECommerceServicePortType getAWSECommerceServicePortJP(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortJP"),
+                AWSECommerceServicePortType.class, features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortUK")
+    public AWSECommerceServicePortType getAWSECommerceServicePortUK() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortUK"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortUK")
+    public AWSECommerceServicePortType getAWSECommerceServicePortUK(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortUK"),
+                AWSECommerceServicePortType.class, features);
+    }
+
+    /**
+     * 
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortUS")
+    public AWSECommerceServicePortType getAWSECommerceServicePortUS() {
+        return super
+                .getPort(
+                        new QName(
+                                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                                "AWSECommerceServicePortUS"),
+                        AWSECommerceServicePortType.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure
+     *            on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default
+     *            values.
+     * @return returns AWSECommerceServicePortType
+     */
+    @WebEndpoint(name = "AWSECommerceServicePortUS")
+    public AWSECommerceServicePortType getAWSECommerceServicePortUS(
+            WebServiceFeature... features) {
+        return super.getPort(new QName(
+                "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+                "AWSECommerceServicePortUS"),
+                AWSECommerceServicePortType.class, features);
     }
 
 }

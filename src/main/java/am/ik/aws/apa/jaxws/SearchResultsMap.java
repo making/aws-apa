@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;element name="IndexName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="Results" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
  *                   &lt;element name="Pages" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
- *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}CorrectedQuery" minOccurs="0"/>
+ *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}CorrectedQuery" minOccurs="0"/>
  *                   &lt;element name="RelevanceRank" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/>
  *                   &lt;element name="ASIN" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/>
  *                 &lt;/sequence>
@@ -117,7 +117,7 @@ public class SearchResultsMap {
      *         &lt;element name="IndexName" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="Results" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
      *         &lt;element name="Pages" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
-     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}CorrectedQuery" minOccurs="0"/>
+     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}CorrectedQuery" minOccurs="0"/>
      *         &lt;element name="RelevanceRank" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/>
      *         &lt;element name="ASIN" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded"/>
      *       &lt;/sequence>

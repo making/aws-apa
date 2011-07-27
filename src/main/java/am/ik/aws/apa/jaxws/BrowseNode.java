@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Property" maxOccurs="unbounded"/>
+ *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Property" maxOccurs="unbounded"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -56,7 +56,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}BrowseNode" maxOccurs="unbounded"/>
+ *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}BrowseNode" maxOccurs="unbounded"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -67,15 +67,15 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}BrowseNode" maxOccurs="unbounded"/>
+ *                   &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}BrowseNode" maxOccurs="unbounded"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}TopSellers" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}NewReleases" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}TopItemSet" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}TopSellers" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}NewReleases" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}TopItemSet" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -321,7 +321,7 @@ public class BrowseNode {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}BrowseNode" maxOccurs="unbounded"/>
+     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}BrowseNode" maxOccurs="unbounded"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -382,7 +382,7 @@ public class BrowseNode {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}BrowseNode" maxOccurs="unbounded"/>
+     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}BrowseNode" maxOccurs="unbounded"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -443,7 +443,7 @@ public class BrowseNode {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Property" maxOccurs="unbounded"/>
+     *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Property" maxOccurs="unbounded"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>

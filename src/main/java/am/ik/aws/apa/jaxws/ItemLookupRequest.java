@@ -38,9 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Condition" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}DeliveryMethod" minOccurs="0"/>
- *         &lt;element name="FutureLaunchDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Condition" minOccurs="0"/>
  *         &lt;element name="IdType" minOccurs="0">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -52,20 +50,12 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element name="ISPUPostalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="MerchantId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="OfferPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *         &lt;element name="ItemId" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="ResponseGroup" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="ReviewPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="ReviewSort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SearchIndex" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="SearchInsideKeywords" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="TagPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="TagsPerPage" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="TagSort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="VariationPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}positiveIntegerOrAll" minOccurs="0"/>
- *         &lt;element name="RelatedItemPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}positiveIntegerOrAll" minOccurs="0"/>
+ *         &lt;element name="VariationPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}positiveIntegerOrAll" minOccurs="0"/>
+ *         &lt;element name="RelatedItemPage" type="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}positiveIntegerOrAll" minOccurs="0"/>
  *         &lt;element name="RelationshipType" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="IncludeReviewsSummary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="TruncateReviewsAt" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
@@ -78,50 +68,24 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ItemLookupRequest", propOrder = { "condition",
-        "deliveryMethod", "futureLaunchDate", "idType", "ispuPostalCode",
-        "merchantId", "offerPage", "itemId", "responseGroup", "reviewPage",
-        "reviewSort", "searchIndex", "searchInsideKeywords", "tagPage",
-        "tagsPerPage", "tagSort", "variationPage", "relatedItemPage",
-        "relationshipType", "includeReviewsSummary", "truncateReviewsAt" })
+@XmlType(name = "ItemLookupRequest", propOrder = { "condition", "idType",
+        "merchantId", "itemId", "responseGroup", "searchIndex",
+        "variationPage", "relatedItemPage", "relationshipType",
+        "includeReviewsSummary", "truncateReviewsAt" })
 public class ItemLookupRequest {
 
     @XmlElement(name = "Condition")
     protected String condition;
-    @XmlElement(name = "DeliveryMethod")
-    protected String deliveryMethod;
-    @XmlElement(name = "FutureLaunchDate")
-    protected String futureLaunchDate;
     @XmlElement(name = "IdType")
     protected String idType;
-    @XmlElement(name = "ISPUPostalCode")
-    protected String ispuPostalCode;
     @XmlElement(name = "MerchantId")
     protected String merchantId;
-    @XmlElement(name = "OfferPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger offerPage;
     @XmlElement(name = "ItemId")
     protected List<String> itemId;
     @XmlElement(name = "ResponseGroup")
     protected List<String> responseGroup;
-    @XmlElement(name = "ReviewPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger reviewPage;
-    @XmlElement(name = "ReviewSort")
-    protected String reviewSort;
     @XmlElement(name = "SearchIndex")
     protected String searchIndex;
-    @XmlElement(name = "SearchInsideKeywords")
-    protected String searchInsideKeywords;
-    @XmlElement(name = "TagPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger tagPage;
-    @XmlElement(name = "TagsPerPage")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger tagsPerPage;
-    @XmlElement(name = "TagSort")
-    protected String tagSort;
     @XmlElement(name = "VariationPage")
     protected String variationPage;
     @XmlElement(name = "RelatedItemPage")
@@ -156,48 +120,6 @@ public class ItemLookupRequest {
     }
 
     /**
-     * Gets the value of the deliveryMethod property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getDeliveryMethod() {
-        return deliveryMethod;
-    }
-
-    /**
-     * Sets the value of the deliveryMethod property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setDeliveryMethod(String value) {
-        this.deliveryMethod = value;
-    }
-
-    /**
-     * Gets the value of the futureLaunchDate property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getFutureLaunchDate() {
-        return futureLaunchDate;
-    }
-
-    /**
-     * Sets the value of the futureLaunchDate property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setFutureLaunchDate(String value) {
-        this.futureLaunchDate = value;
-    }
-
-    /**
      * Gets the value of the idType property.
      * 
      * @return possible object is {@link String }
@@ -219,27 +141,6 @@ public class ItemLookupRequest {
     }
 
     /**
-     * Gets the value of the ispuPostalCode property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getISPUPostalCode() {
-        return ispuPostalCode;
-    }
-
-    /**
-     * Sets the value of the ispuPostalCode property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setISPUPostalCode(String value) {
-        this.ispuPostalCode = value;
-    }
-
-    /**
      * Gets the value of the merchantId property.
      * 
      * @return possible object is {@link String }
@@ -258,27 +159,6 @@ public class ItemLookupRequest {
      */
     public void setMerchantId(String value) {
         this.merchantId = value;
-    }
-
-    /**
-     * Gets the value of the offerPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getOfferPage() {
-        return offerPage;
-    }
-
-    /**
-     * Sets the value of the offerPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setOfferPage(BigInteger value) {
-        this.offerPage = value;
     }
 
     /**
@@ -340,48 +220,6 @@ public class ItemLookupRequest {
     }
 
     /**
-     * Gets the value of the reviewPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getReviewPage() {
-        return reviewPage;
-    }
-
-    /**
-     * Sets the value of the reviewPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setReviewPage(BigInteger value) {
-        this.reviewPage = value;
-    }
-
-    /**
-     * Gets the value of the reviewSort property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getReviewSort() {
-        return reviewSort;
-    }
-
-    /**
-     * Sets the value of the reviewSort property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setReviewSort(String value) {
-        this.reviewSort = value;
-    }
-
-    /**
      * Gets the value of the searchIndex property.
      * 
      * @return possible object is {@link String }
@@ -400,90 +238,6 @@ public class ItemLookupRequest {
      */
     public void setSearchIndex(String value) {
         this.searchIndex = value;
-    }
-
-    /**
-     * Gets the value of the searchInsideKeywords property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSearchInsideKeywords() {
-        return searchInsideKeywords;
-    }
-
-    /**
-     * Sets the value of the searchInsideKeywords property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSearchInsideKeywords(String value) {
-        this.searchInsideKeywords = value;
-    }
-
-    /**
-     * Gets the value of the tagPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getTagPage() {
-        return tagPage;
-    }
-
-    /**
-     * Sets the value of the tagPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setTagPage(BigInteger value) {
-        this.tagPage = value;
-    }
-
-    /**
-     * Gets the value of the tagsPerPage property.
-     * 
-     * @return possible object is {@link BigInteger }
-     * 
-     */
-    public BigInteger getTagsPerPage() {
-        return tagsPerPage;
-    }
-
-    /**
-     * Sets the value of the tagsPerPage property.
-     * 
-     * @param value
-     *            allowed object is {@link BigInteger }
-     * 
-     */
-    public void setTagsPerPage(BigInteger value) {
-        this.tagsPerPage = value;
-    }
-
-    /**
-     * Gets the value of the tagSort property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getTagSort() {
-        return tagSort;
-    }
-
-    /**
-     * Sets the value of the tagSort property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setTagSort(String value) {
-        this.tagSort = value;
     }
 
     /**

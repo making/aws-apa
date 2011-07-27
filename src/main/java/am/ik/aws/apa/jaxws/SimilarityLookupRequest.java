@@ -36,13 +36,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}Condition" minOccurs="0"/>
- *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-04-01}DeliveryMethod" minOccurs="0"/>
+ *         &lt;element ref="{http://webservices.amazon.com/AWSECommerceService/2011-08-01}Condition" minOccurs="0"/>
  *         &lt;element name="ItemId" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="ISPUPostalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="MerchantId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ResponseGroup" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="ReviewSort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SimilarityType" minOccurs="0">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -60,25 +57,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SimilarityLookupRequest", propOrder = { "condition",
-        "deliveryMethod", "itemId", "ispuPostalCode", "merchantId",
-        "responseGroup", "reviewSort", "similarityType" })
+@XmlType(name = "SimilarityLookupRequest", propOrder = { "condition", "itemId",
+        "merchantId", "responseGroup", "similarityType" })
 public class SimilarityLookupRequest {
 
     @XmlElement(name = "Condition")
     protected String condition;
-    @XmlElement(name = "DeliveryMethod")
-    protected String deliveryMethod;
     @XmlElement(name = "ItemId")
     protected List<String> itemId;
-    @XmlElement(name = "ISPUPostalCode")
-    protected String ispuPostalCode;
     @XmlElement(name = "MerchantId")
     protected String merchantId;
     @XmlElement(name = "ResponseGroup")
     protected List<String> responseGroup;
-    @XmlElement(name = "ReviewSort")
-    protected String reviewSort;
     @XmlElement(name = "SimilarityType")
     protected String similarityType;
 
@@ -101,27 +91,6 @@ public class SimilarityLookupRequest {
      */
     public void setCondition(String value) {
         this.condition = value;
-    }
-
-    /**
-     * Gets the value of the deliveryMethod property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getDeliveryMethod() {
-        return deliveryMethod;
-    }
-
-    /**
-     * Sets the value of the deliveryMethod property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setDeliveryMethod(String value) {
-        this.deliveryMethod = value;
     }
 
     /**
@@ -151,27 +120,6 @@ public class SimilarityLookupRequest {
             itemId = new ArrayList<String>();
         }
         return this.itemId;
-    }
-
-    /**
-     * Gets the value of the ispuPostalCode property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getISPUPostalCode() {
-        return ispuPostalCode;
-    }
-
-    /**
-     * Sets the value of the ispuPostalCode property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setISPUPostalCode(String value) {
-        this.ispuPostalCode = value;
     }
 
     /**
@@ -222,27 +170,6 @@ public class SimilarityLookupRequest {
             responseGroup = new ArrayList<String>();
         }
         return this.responseGroup;
-    }
-
-    /**
-     * Gets the value of the reviewSort property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getReviewSort() {
-        return reviewSort;
-    }
-
-    /**
-     * Sets the value of the reviewSort property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setReviewSort(String value) {
-        this.reviewSort = value;
     }
 
     /**
