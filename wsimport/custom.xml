@@ -1,0 +1,6 @@
+<jaxws:bindings
+    wsdlLocation="http://ecs.amazonaws.com/AWSECommerceService/AWSECommerceService.wsdl"
+    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+    <jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
+</jaxws:bindings>
