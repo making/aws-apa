@@ -16,6 +16,7 @@
 
 package am.ik.aws.config;
 
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class AwsConfig {
@@ -28,6 +29,10 @@ public class AwsConfig {
     }
 
     public static String getValue(String key) {
-        return RESOURCE_BUNDLE.getString(key);
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return null;
+        }
     }
 }
