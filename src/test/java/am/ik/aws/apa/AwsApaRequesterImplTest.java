@@ -18,6 +18,13 @@ package am.ik.aws.apa;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import javax.xml.ws.Response;
 
 import org.junit.After;
@@ -66,7 +73,7 @@ public class AwsApaRequesterImplTest {
     }
 
     @Test
-    public void testItemLookup() throws Exception {
+    public void testItemLookup01() throws Exception {
         String asin = "489471499X";
         ItemLookupRequest request = new ItemLookupRequest();
         request.getItemId().add(asin);
@@ -80,6 +87,52 @@ public class AwsApaRequesterImplTest {
         Item item = response.getItems().get(0).getItem().get(0);
         assertEquals(asin, item.getASIN());
         assertNotNull(item.getItemAttributes());
+    }
+
+    public static class Result {
+        public Future<ItemLookupResponse> res;
+        public String expectedId;
+    }
+
+    @Test
+    public void testItemLookup02() throws Exception {
+        // test in multithread
+        int threadNum = 100;
+        ExecutorService exec = Executors.newFixedThreadPool(5);
+
+        List<Result> results = new ArrayList<Result>();
+        String[] ids = { "489471499X", "489471499X", "4798024031" };
+        for (int i = 0; i < threadNum; i++) {
+            final String id = ids[i % ids.length];
+            Future<ItemLookupResponse> res = exec
+                    .submit(new Callable<ItemLookupResponse>() {
+                        @Override
+                        public ItemLookupResponse call() throws Exception {
+                            ItemLookupRequest request = new ItemLookupRequest();
+                            request.getItemId().add(id);
+                            request.getResponseGroup().add("Small");
+                            return requester.itemLookup(request);
+                        }
+                    });
+            Result result = new Result();
+            result.res = res;
+            result.expectedId = id;
+            results.add(result);
+        }
+
+        for (Result r : results) {
+            ItemLookupResponse response = r.res.get();
+            assertNotNull(response);
+            assertNotNull(response.getItems());
+            assertTrue(response.getItems().size() == 1);
+            assertNotNull(response.getItems().get(0).getItem());
+            assertTrue(response.getItems().get(0).getItem().size() == 1);
+            Item item = response.getItems().get(0).getItem().get(0);
+            assertEquals(r.expectedId, item.getASIN());
+            assertNotNull(item.getItemAttributes());
+        }
+
+        exec.shutdown();
     }
 
     @Test

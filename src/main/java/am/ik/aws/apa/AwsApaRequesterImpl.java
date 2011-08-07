@@ -17,11 +17,13 @@
 package am.ik.aws.apa;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Response;
+import javax.xml.ws.WebServiceException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,24 +43,49 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     private final String endpoint;
     private final String accessKeyId;
     private final String secretAccessKey;
-    private String associateTag;
-    private Lock lock = new ReentrantLock();
+    private final String associateTag;
+    private final Lock lock = new ReentrantLock();
     private volatile AWSECommerceServicePortType port;
     private static final Logger LOG = LoggerFactory
             .getLogger(AwsApaRequesterImpl.class);
+    private int retryCount = 3;
+    private long retryInterval = 1000; // [msec]
 
-    public AwsApaRequesterImpl() {
+    public AwsApaRequesterImpl() throws IllegalArgumentException {
         this.endpoint = AwsConfig.getValue("aws.endpoint");
         this.accessKeyId = AwsConfig.getValue("aws.accesskey.id");
         this.secretAccessKey = AwsConfig.getValue("aws.secret.accesskey");
         this.associateTag = AwsConfig.getValue("aws.associate.tag");
+        checkArgs(endpoint, accessKeyId, secretAccessKey, associateTag);
     }
 
     public AwsApaRequesterImpl(String endpoint, String accessKeyId,
-            String secretAccessKey) {
+            String secretAccessKey, String associateTag)
+            throws IllegalArgumentException {
         this.endpoint = endpoint;
         this.accessKeyId = accessKeyId;
         this.secretAccessKey = secretAccessKey;
+        this.associateTag = associateTag;
+        checkArgs(endpoint, accessKeyId, secretAccessKey, associateTag);
+    }
+
+    private static void checkArgs(String endpoint, String accessKeyId,
+            String secretAccessKey, String associateTag)
+            throws IllegalArgumentException {
+        checkIfNulOrEmpty(endpoint, "endpoint");
+        checkIfNulOrEmpty(accessKeyId, "accessKeyId");
+        checkIfNulOrEmpty(secretAccessKey, "secretAccessKey");
+        checkIfNulOrEmpty(associateTag, "associateTag");
+    }
+
+    private static void checkIfNulOrEmpty(String str, String name)
+            throws IllegalArgumentException {
+        if (str == null) {
+            throw new IllegalArgumentException(name + " is null.");
+        }
+        if ("".equals(str)) {
+            throw new IllegalArgumentException(name + " is empty.");
+        }
     }
 
     protected AWSECommerceServicePortType preparePort() {
@@ -87,9 +114,7 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     protected ItemSearch prepareItemSearch(ItemSearchRequest request) {
         LOG.debug("start prepareItemSearch(ItemSearchRequest) : {}", request);
         ItemSearch itemSearch = new ItemSearch();
-        if (associateTag != null && !associateTag.equals("")) {
-            itemSearch.setAssociateTag(associateTag);
-        }
+        itemSearch.setAssociateTag(associateTag);
         itemSearch.setAWSAccessKeyId(accessKeyId);
         itemSearch.getRequest().add(request);
 
@@ -100,12 +125,9 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     protected ItemLookup prepareItemLookup(ItemLookupRequest request) {
         LOG.debug("start prepareItemLookup(ItemLookupRequest) : {}", request);
         ItemLookup itemLookup = new ItemLookup();
-        if (associateTag != null && !associateTag.equals("")) {
-            itemLookup.setAssociateTag(associateTag);
-        }
+        itemLookup.setAssociateTag(associateTag);
         itemLookup.setAWSAccessKeyId(accessKeyId);
         itemLookup.getRequest().add(request);
-
         LOG.debug("end prepareItemLookup(ItemLookupRequest) : {}", itemLookup);
         return itemLookup;
 
@@ -114,9 +136,14 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     @Override
     public ItemSearchResponse itemSearch(ItemSearchRequest request) {
         LOG.debug("start itemSearch(ItemSearchRequest) : {}", request);
-        AWSECommerceServicePortType port = preparePort();
-        ItemSearch itemSearch = prepareItemSearch(request);
-        ItemSearchResponse response = port.itemSearch(itemSearch);
+        final AWSECommerceServicePortType port = preparePort();
+        final ItemSearch itemSearch = prepareItemSearch(request);
+        ItemSearchResponse response = invokeWithRetry(new WebServiceInvoker<ItemSearchResponse>() {
+            @Override
+            public ItemSearchResponse invoke() throws WebServiceException {
+                return port.itemSearch(itemSearch);
+            }
+        });
         LOG.debug("end itemSearch(ItemSearchRequest) : {}", response);
         return response;
     }
@@ -134,12 +161,43 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
         return response;
     }
 
+    public <T> T invokeWithRetry(WebServiceInvoker<T> invoker)
+            throws WebServiceException {
+        int retry = 0;
+        T result = null;
+        while (true) {
+            try {
+                result = invoker.invoke();
+                break;
+            } catch (WebServiceException e) {
+                LOG.warn("web service exception occurred", e);
+                if (retry < retryCount && retryInterval > 0) {
+                    retry++;
+                    try {
+                        LOG.debug("retry {}/{}", retry, retryCount);
+                        TimeUnit.MILLISECONDS.sleep(retryInterval * retry);
+                    } catch (InterruptedException ignored) {
+                    }
+                    continue;
+                } else {
+                    throw e;
+                }
+            }
+        }
+        return result;
+    }
+
     @Override
     public ItemLookupResponse itemLookup(ItemLookupRequest request) {
         LOG.debug("start itemLookup(ItemLookupRequest) : {}", request);
-        AWSECommerceServicePortType port = preparePort();
-        ItemLookup itemLookup = prepareItemLookup(request);
-        ItemLookupResponse response = port.itemLookup(itemLookup);
+        final AWSECommerceServicePortType port = preparePort();
+        final ItemLookup itemLookup = prepareItemLookup(request);
+        ItemLookupResponse response = invokeWithRetry(new WebServiceInvoker<ItemLookupResponse>() {
+            @Override
+            public ItemLookupResponse invoke() throws WebServiceException {
+                return port.itemLookup(itemLookup);
+            }
+        });
         LOG.debug("end itemLookup(ItemLookupRequest) : {}", response);
         return response;
     }
@@ -157,12 +215,34 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
         return response;
     }
 
-    public String getAssociateTag() {
-        return associateTag;
+    public <T> T getResponseWithRetry(final Response<T> res) {
+        return invokeWithRetry(new WebServiceInvoker<T>() {
+            @Override
+            public T invoke() throws WebServiceException {
+                try {
+                    return res.get();
+                } catch (InterruptedException e) {
+                    throw new WebServiceException(e);
+                } catch (ExecutionException e) {
+                    throw new WebServiceException(e);
+                }
+            }
+        });
     }
 
-    public void setAssociateTag(String associateTag) {
-        this.associateTag = associateTag;
+    public int getRetryCount() {
+        return retryCount;
     }
 
+    public void setRetryCount(int retryCount) {
+        this.retryCount = retryCount;
+    }
+
+    public long getRetryInterval() {
+        return retryInterval;
+    }
+
+    public void setRetryInterval(long retryInterval) {
+        this.retryInterval = retryInterval;
+    }
 }
