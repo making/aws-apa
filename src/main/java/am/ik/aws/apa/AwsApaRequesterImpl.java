@@ -72,13 +72,13 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     private static void checkArgs(String endpoint, String accessKeyId,
             String secretAccessKey, String associateTag)
             throws IllegalArgumentException {
-        checkIfNulOrEmpty(endpoint, "endpoint");
-        checkIfNulOrEmpty(accessKeyId, "accessKeyId");
-        checkIfNulOrEmpty(secretAccessKey, "secretAccessKey");
-        checkIfNulOrEmpty(associateTag, "associateTag");
+        checkIfNullOrEmpty(endpoint, "endpoint");
+        checkIfNullOrEmpty(accessKeyId, "accessKeyId");
+        checkIfNullOrEmpty(secretAccessKey, "secretAccessKey");
+        checkIfNullOrEmpty(associateTag, "associateTag");
     }
 
-    private static void checkIfNulOrEmpty(String str, String name)
+    private static void checkIfNullOrEmpty(String str, String name)
             throws IllegalArgumentException {
         if (str == null) {
             throw new IllegalArgumentException(name + " is null.");
@@ -89,25 +89,29 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     }
 
     protected AWSECommerceServicePortType preparePort() {
-        LOG.debug("start preparePort()");
-        try {
-            lock.lock();
-            if (port == null) {
-                LOG.debug("preparing...");
-                AWSECommerceService service = new AWSECommerceService();
-                service.setHandlerResolver(new AwsHandlerResolver(
-                        secretAccessKey));
-                AWSECommerceServicePortType port = service
-                        .getAWSECommerceServicePort();
-                ((BindingProvider) port).getRequestContext().put(
-                        BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                        endpoint + "/onca/soap?Service=AWSECommerceService");
-                this.port = port;
+        if (port == null) {
+            LOG.debug("start preparePort()");
+            try {
+                lock.lock();
+                if (port == null) {
+                    LOG.debug("preparing...");
+                    AWSECommerceService service = new AWSECommerceService();
+                    service.setHandlerResolver(new AwsHandlerResolver(
+                            secretAccessKey));
+                    AWSECommerceServicePortType port = service
+                            .getAWSECommerceServicePort();
+                    ((BindingProvider) port)
+                            .getRequestContext()
+                            .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
+                                    endpoint
+                                            + "/onca/soap?Service=AWSECommerceService");
+                    this.port = port;
+                }
+            } finally {
+                lock.unlock();
             }
-        } finally {
-            lock.unlock();
+            LOG.debug("end preparePort() : {}", port);
         }
-        LOG.debug("end preparePort() : {}", port);
         return port;
     }
 
