@@ -4,12 +4,13 @@ aws-apa is a library for Amazon Advertising Product API. This library supports a
 Supports http://webservices.amazon.com/AWSECommerceService/2011-08-01
 
 ## Settings
-`am.ik.aws.apa.AwsApaRequesterImpl` is the main class to send requests to AWS. To use this class, some information is required.
+`am.ik.aws.apa.AwsApaRequesterImpl` is the main class to send requests to AWS. To use this class, all properties are required.
+('required' means 'not null and not empty')
 
 - Accesskey ID
 - Secret Accesskey
 - Endpoint (ex. https://ecs.amazonaws.jp)
-- Associate Tag (optional)
+- Associate Tag (ex. ikam-22)
 
 You can write these in `aws-config.properties` like below. (This file must be located in just under the classpath.)
 
@@ -18,9 +19,11 @@ You can write these in `aws-config.properties` like below. (This file must be lo
     aws.endpoint=https://ecs.amazonaws.jp
     aws.associate.tag=ikam-22
 
-You can also set Accesskey ID, Secret Accesskey and Endpoint in the constructor,  `am.ik.aws.apa.AwsApaRequesterImpl.AwsApaRequesterImpl(String, String, String)`.
+You can also set these in the constructor,  `am.ik.aws.apa.AwsApaRequesterImpl.AwsApaRequesterImpl(String, String, String, String)`.
 
 ## Examples
+
+All examples use `aws-config.properties`.
 
 ### Item Search
 
@@ -64,7 +67,7 @@ And add dependency.
         <dependency>
             <groupId>am.ik.aws</groupId>
             <artifactId>aws-apa</artifactId>
-            <version>0.9.1</version>
+            <version>0.9.2</version>
         </dependency>
     </dependencies>
 
