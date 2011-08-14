@@ -49,6 +49,99 @@ public class AwsApaRequesterImplTest {
     }
 
     @Test
+    public void testConstructor01() throws Exception {
+        try {
+            new AwsApaRequesterImpl("", "", "", "");
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor02() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", "", "", "");
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor03() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", "a", "", "");
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+
+    @Test
+    public void testConstructor04() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", "a", "a", "");
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor05() throws Exception {
+        try {
+            new AwsApaRequesterImpl(null, null, null, null);
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor06() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", null, null, null);
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor07() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", "a", null, null);
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+
+    @Test
+    public void testConstructor08() throws Exception {
+        try {
+            new AwsApaRequesterImpl("a", "a", "a", null);
+            fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
+    }
+    
+    @Test
+    public void testConstructor09() throws Exception {
+        assertNotNull(new AwsApaRequesterImpl("a", "a", "a", "a"));
+    }
+    
+    @Test
     public void testItemSearch() throws Exception {
         ItemSearchRequest request = new ItemSearchRequest();
         request.setSearchIndex("Books");
@@ -97,7 +190,7 @@ public class AwsApaRequesterImplTest {
     @Test
     public void testItemLookup02() throws Exception {
         // test in multithread
-        int threadNum = 100;
+        int threadNum = 50;
         ExecutorService exec = Executors.newFixedThreadPool(5);
 
         List<Result> results = new ArrayList<Result>();
