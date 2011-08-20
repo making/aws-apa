@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.aws</groupId>
     <artifactId>aws-apa</artifactId>
-    <version>0.9.2</version>
+    <version>0.9.3</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -26,8 +26,11 @@
     </distributionManagement>
 
     <properties>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <jdk.version>1.6</jdk.version>
         <org.aspectj.version>1.6.9</org.aspectj.version>
-        <org.slf4j.version>1.6.1</org.slf4j.version>
+        <yalf.version>0.9.0</yalf.version>
         <commons.codec.version>1.4</commons.codec.version>
     </properties>
 
@@ -61,13 +64,65 @@
                 </configuration>
             </plugin>
         </plugins>
+        
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <useProjectReferences>false</useProjectReferences>
+                        <downloadSources>true</downloadSources>
+                        <!-- <classpathContainers> -->
+                        <!-- <buildcommand>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre${jdk.version}</buildcommand> -->
+                        <!-- </classpathContainers> -->
+                        <additionalConfig>
+                            <file>
+                                <name>.settings/org.eclipse.jdt.ui.prefs</name>
+                                <content>
+        <![CDATA[
+editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
+org.eclipse.jdt.ui.staticondemandthreshold=1  
+sp_cleanup.format_source_code=true
+sp_cleanup.organize_imports=true
+        ]]>
+                                </content>
+                            </file>
+                            <file>
+                                <name>.settings/org.eclipse.jdt.core.prefs</name>
+                                <content>
+        <![CDATA[
+encoding//src/test/java=${encoding}
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
+eclipse.preferences.version=1
+encoding//src/test/resources=${encoding}
+org.eclipse.jdt.core.compiler.source=${jdk.version}
+encoding//src/main/java=${encoding}
+encoding//src/main/resources=UTF-8
+org.eclipse.jdt.core.compiler.compliance=${jdk.version}
+        ]]>
+                                </content>
+                            </file>
+                            <file>
+                                <name>.settings/org.eclipse.core.resources.prefs</name>
+                                <content>
+        <![CDATA[
+eclipse.preferences.version=1
+encoding/<project>=${encoding}
+        ]]>
+                                </content>
+                            </file>
+                        </additionalConfig>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${org.slf4j.version}</version>
+            <groupId>am.ik.yalf</groupId>
+            <artifactId>yalf</artifactId>
+            <version>${yalf.version}</version>
         </dependency>
 
         <dependency>
@@ -80,26 +135,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>0.9.24</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>0.9.24</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
             <scope>test</scope>
         </dependency>
     </dependencies>

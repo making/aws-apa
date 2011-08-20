@@ -16,7 +16,10 @@
 
 package am.ik.aws.apa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,13 @@ import am.ik.aws.apa.jaxws.ItemSearchRequest;
 import am.ik.aws.apa.jaxws.ItemSearchResponse;
 
 public class AwsApaRequesterImplTest {
+    static {
+        System.setProperty(
+                "java.util.logging.config.file",
+                AwsApaRequesterImpl.class.getClassLoader()
+                        .getResource("logging.properties").getFile());
+    }
+
     protected AwsApaRequester requester = new AwsApaRequesterImpl();
 
     @Before
@@ -58,7 +68,7 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor02() throws Exception {
         try {
@@ -69,7 +79,7 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor03() throws Exception {
         try {
@@ -91,7 +101,7 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor05() throws Exception {
         try {
@@ -102,7 +112,7 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor06() throws Exception {
         try {
@@ -113,7 +123,7 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor07() throws Exception {
         try {
@@ -135,12 +145,12 @@ public class AwsApaRequesterImplTest {
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
-    
+
     @Test
     public void testConstructor09() throws Exception {
         assertNotNull(new AwsApaRequesterImpl("a", "a", "a", "a"));
     }
-    
+
     @Test
     public void testItemSearch() throws Exception {
         ItemSearchRequest request = new ItemSearchRequest();
