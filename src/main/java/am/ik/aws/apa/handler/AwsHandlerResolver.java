@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
+ * @author tlcdev @ https://forums.aws.amazon.com/thread.jspa?threadID=34600&tstart=0#141158
+ */
 package am.ik.aws.apa.handler;
 
 import java.io.UnsupportedEncodingException;

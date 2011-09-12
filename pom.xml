@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.aws</groupId>
     <artifactId>aws-apa</artifactId>
-    <version>0.9.3</version>
+    <version>0.9.4-SNAPSHOT</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <jdk.version>1.6</jdk.version>
         <org.aspectj.version>1.6.9</org.aspectj.version>
-        <yalf.version>0.9.0</yalf.version>
+        <yalf.version>0.9.1</yalf.version>
         <commons.codec.version>1.4</commons.codec.version>
     </properties>
 
