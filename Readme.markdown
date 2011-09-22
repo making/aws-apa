@@ -1,12 +1,10 @@
 ## About
 aws-apa is a library for Amazon Advertising Product API. This library supports all SOAP API using JAX-WS.
 
-
-Supported http://webservices.amazon.com/AWSECommerceService/2011-08-01 (since 0.9.1)
-
-Supported retry request when a web service exception occurs. (since 0.9.2)
-
-Supported i18n log message & changed logger library from SLF4J to YALF (since 0.9.3)
+ - version 0.9.1 Supported http://webservices.amazon.com/AWSECommerceService/2011-08-01
+ - version 0.9.2 Supported retry request when a web service exception occurs.
+ - version 0.9.3 Supported i18n log message & changed logger library from SLF4J to YALF
+ - version 0.9.4 Throws web service exceptions at the first time if not http status code is't 503. Updated YALF version to 0.9.1
 
 ## Settings
 `am.ik.aws.apa.AwsApaRequesterImpl` is the main class to send requests to AWS. To use this class, all properties are required.

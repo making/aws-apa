@@ -20,6 +20,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Response;
@@ -48,6 +50,8 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
             .getLogger(AwsApaRequesterImpl.class);
     private int retryCount = 3;
     private long retryInterval = 1000; // [msec]
+    private static final Pattern HTTP_STATUS_PATTERN = Pattern
+            .compile("status code ([0-9]{3})");
 
     public AwsApaRequesterImpl() throws IllegalArgumentException {
         this.endpoint = AwsConfig.getValue("aws.endpoint");
@@ -174,17 +178,20 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
                 result = invoker.invoke();
                 break;
             } catch (WebServiceException e) {
-                LOGGER.warn("WAPA001", e);
-                if (retry < retryCount && retryInterval > 0) {
-                    retry++;
-                    try {
-                        LOGGER.debug("DAPA004", retry, retryCount);
-                        TimeUnit.MILLISECONDS.sleep(retryInterval * retry);
-                    } catch (InterruptedException ignored) {
+                Matcher m = HTTP_STATUS_PATTERN.matcher(e.getMessage());
+                if (m.find() && Integer.parseInt(m.group(1)) == 503) {
+                    LOGGER.warn("WAPA001", e);
+                    if (retry < retryCount && retryInterval > 0) {
+                        retry++;
+                        try {
+                            LOGGER.debug("DAPA004", retry, retryCount);
+                            TimeUnit.MILLISECONDS.sleep(retryInterval * retry);
+                        } catch (InterruptedException ignored) {
+                        }
+                        continue;
+                    } else {
+                        throw e;
                     }
-                    continue;
-                } else {
-                    throw e;
                 }
             }
         }
