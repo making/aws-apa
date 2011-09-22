@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.aws</groupId>
     <artifactId>aws-apa</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
