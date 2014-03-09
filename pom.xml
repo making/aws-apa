@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.aws</groupId>
     <artifactId>aws-apa</artifactId>
-    <version>0.9.5</version>
+    <version>0.9.6-SNAPSHOT</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -17,7 +17,7 @@
         <url>git@github.com:making/aws-apa.git</url>
         <connection>scm:git:git@github.com:making/aws-apa.git</connection>
         <developerConnection>scm:git:git@github.com:making/aws-apa.git</developerConnection>
-        <tag>aws-apa-0.9.5</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
