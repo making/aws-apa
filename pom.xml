@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.aws</groupId>
     <artifactId>aws-apa</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.5-SNAPSHOT</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -12,16 +12,36 @@
         </license>
     </licenses>
 
+    <url>https://github.com/making/aws-apa</url>
+    <description>Java Library for Amazon Product Advertising API using JAX-WS</description>
+    <scm>
+        <url>git@github.com:making/aws-apa.git</url>
+        <connection>scm:git:git@github.com:making/aws-apa.git</connection>
+        <developerConnection>scm:git:git@github.com:making/aws-apa.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>making</id>
+            <name>Toshiaki Maki</name>
+            <email>makingx@gmail.com</email>
+            <url>https://twitter.com/making</url>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <repository>
-            <id>making-dropbox-releases</id>
-            <url>http://dl.dropbox.com/u/342817/maven/releases
-            </url>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <uniqueVersion>false</uniqueVersion>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
         <snapshotRepository>
-            <id>making-dropbox-snapshots</id>
-            <url>http://dl.dropbox.com/u/342817/maven/snapshots
-            </url>
+            <id>sonatype-nexus-snapshot</id>
+            <name>Nexus Snapshot Repository</name>
+            <uniqueVersion>false</uniqueVersion>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -29,19 +49,61 @@
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <jdk.version>1.6</jdk.version>
-        <org.aspectj.version>1.6.9</org.aspectj.version>
-        <yalf.version>0.9.1</yalf.version>
+        <org.slf4j.version>1.7.5</org.slf4j.version>
         <commons.codec.version>1.4</commons.codec.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>source-jar</id>
-                        <phase>package</phase>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -64,65 +126,13 @@
                 </configuration>
             </plugin>
         </plugins>
-        
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <configuration>
-                        <useProjectReferences>false</useProjectReferences>
-                        <downloadSources>true</downloadSources>
-                        <!-- <classpathContainers> -->
-                        <!-- <buildcommand>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre${jdk.version}</buildcommand> -->
-                        <!-- </classpathContainers> -->
-                        <additionalConfig>
-                            <file>
-                                <name>.settings/org.eclipse.jdt.ui.prefs</name>
-                                <content>
-        <![CDATA[
-editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
-org.eclipse.jdt.ui.staticondemandthreshold=1  
-sp_cleanup.format_source_code=true
-sp_cleanup.organize_imports=true
-        ]]>
-                                </content>
-                            </file>
-                            <file>
-                                <name>.settings/org.eclipse.jdt.core.prefs</name>
-                                <content>
-        <![CDATA[
-encoding//src/test/java=${encoding}
-org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
-eclipse.preferences.version=1
-encoding//src/test/resources=${encoding}
-org.eclipse.jdt.core.compiler.source=${jdk.version}
-encoding//src/main/java=${encoding}
-encoding//src/main/resources=UTF-8
-org.eclipse.jdt.core.compiler.compliance=${jdk.version}
-        ]]>
-                                </content>
-                            </file>
-                            <file>
-                                <name>.settings/org.eclipse.core.resources.prefs</name>
-                                <content>
-        <![CDATA[
-eclipse.preferences.version=1
-encoding/<project>=${encoding}
-        ]]>
-                                </content>
-                            </file>
-                        </additionalConfig>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <dependencies>
         <dependency>
-            <groupId>am.ik.yalf</groupId>
-            <artifactId>yalf</artifactId>
-            <version>${yalf.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
         </dependency>
 
         <dependency>

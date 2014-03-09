@@ -37,7 +37,8 @@ import am.ik.aws.apa.jaxws.ItemSearch;
 import am.ik.aws.apa.jaxws.ItemSearchRequest;
 import am.ik.aws.apa.jaxws.ItemSearchResponse;
 import am.ik.aws.config.AwsConfig;
-import am.ik.yalf.logger.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AwsApaRequesterImpl implements AwsApaRequester {
     private final String endpoint;
@@ -46,7 +47,7 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     private final String associateTag;
     private final Lock lock = new ReentrantLock();
     private volatile AWSECommerceServicePortType port;
-    private static final Logger LOGGER = Logger
+    private static final Logger logger = LoggerFactory
             .getLogger(AwsApaRequesterImpl.class);
     private int retryCount = 3;
     private long retryInterval = 1000; // [msec]
@@ -62,7 +63,7 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     }
 
     public AwsApaRequesterImpl(String endpoint, String accessKeyId,
-            String secretAccessKey, String associateTag)
+                               String secretAccessKey, String associateTag)
             throws IllegalArgumentException {
         this.endpoint = endpoint;
         this.accessKeyId = accessKeyId;
@@ -72,7 +73,7 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     }
 
     private static void checkArgs(String endpoint, String accessKeyId,
-            String secretAccessKey, String associateTag)
+                                  String secretAccessKey, String associateTag)
             throws IllegalArgumentException {
         checkIfNullOrEmpty(endpoint, "endpoint");
         checkIfNullOrEmpty(accessKeyId, "accessKeyId");
@@ -92,11 +93,10 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
 
     protected AWSECommerceServicePortType preparePort() {
         if (port == null) {
-            LOGGER.debug("DAPA001", "preparePort()", null);
             try {
                 lock.lock();
                 if (port == null) {
-                    LOGGER.debug("DAPA003");
+                    logger.debug("preparing...");
                     AWSECommerceService service = new AWSECommerceService();
                     service.setHandlerResolver(new AwsHandlerResolver(
                             secretAccessKey));
@@ -112,38 +112,29 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
             } finally {
                 lock.unlock();
             }
-            LOGGER.debug("DAPA002", "preparePort()", port);
         }
         return port;
     }
 
     protected ItemSearch prepareItemSearch(ItemSearchRequest request) {
-        LOGGER.debug("DAPA001", "prepareItemSearch(ItemSearchRequest)", request);
         ItemSearch itemSearch = new ItemSearch();
         itemSearch.setAssociateTag(associateTag);
         itemSearch.setAWSAccessKeyId(accessKeyId);
         itemSearch.getRequest().add(request);
-
-        LOGGER.debug("DAPA002", "prepareItemSearch(ItemSearchRequest)",
-                itemSearch);
         return itemSearch;
     }
 
     protected ItemLookup prepareItemLookup(ItemLookupRequest request) {
-        LOGGER.debug("DAPA001", "prepareItemLookup(ItemLookupRequest)", request);
         ItemLookup itemLookup = new ItemLookup();
         itemLookup.setAssociateTag(associateTag);
         itemLookup.setAWSAccessKeyId(accessKeyId);
         itemLookup.getRequest().add(request);
-        LOGGER.debug("DAPA002", "prepareItemLookup(ItemLookupRequest)",
-                itemLookup);
         return itemLookup;
 
     }
 
     @Override
     public ItemSearchResponse itemSearch(ItemSearchRequest request) {
-        LOGGER.debug("DAPA001", "itemSearch(ItemSearchRequest)", request);
         final AWSECommerceServicePortType port = preparePort();
         final ItemSearch itemSearch = prepareItemSearch(request);
         ItemSearchResponse response = invokeWithRetry(new WebServiceInvoker<ItemSearchResponse>() {
@@ -152,7 +143,6 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
                 return port.itemSearch(itemSearch);
             }
         });
-        LOGGER.debug("DAPA002", "itemSearch(ItemSearchRequest)", response);
         return response;
     }
 
@@ -160,12 +150,10 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     public Response<ItemSearchResponse> itemSearchAsync(
             ItemSearchRequest request) throws ExecutionException,
             InterruptedException {
-        LOGGER.debug("DAPA001", "itemSearchAsync(ItemSearchRequest)", request);
         AWSECommerceServicePortType port = preparePort();
         ItemSearch itemSearch = prepareItemSearch(request);
         Response<ItemSearchResponse> response = port
                 .itemSearchAsync(itemSearch);
-        LOGGER.debug("DAPA002", "itemSearchAsync(ItemLookupRequest)", response);
         return response;
     }
 
@@ -180,11 +168,11 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
             } catch (WebServiceException e) {
                 Matcher m = HTTP_STATUS_PATTERN.matcher(e.getMessage());
                 if (m.find() && Integer.parseInt(m.group(1)) == 503) {
-                    LOGGER.warn("WAPA001", e);
+                    logger.warn("web service exception occurred", e);
                     if (retry < retryCount && retryInterval > 0) {
                         retry++;
                         try {
-                            LOGGER.debug("DAPA004", retry, retryCount);
+                            logger.debug("retry {}/{}", retry, retryCount);
                             TimeUnit.MILLISECONDS.sleep(retryInterval * retry);
                         } catch (InterruptedException ignored) {
                         }
@@ -200,7 +188,6 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
 
     @Override
     public ItemLookupResponse itemLookup(ItemLookupRequest request) {
-        LOGGER.debug("DAPA001", "itemLookup(ItemLookupRequest)", request);
         final AWSECommerceServicePortType port = preparePort();
         final ItemLookup itemLookup = prepareItemLookup(request);
         ItemLookupResponse response = invokeWithRetry(new WebServiceInvoker<ItemLookupResponse>() {
@@ -209,7 +196,6 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
                 return port.itemLookup(itemLookup);
             }
         });
-        LOGGER.debug("DAPA002", "itemLookup(ItemLookupRequest)", response);
         return response;
     }
 
@@ -217,12 +203,10 @@ public class AwsApaRequesterImpl implements AwsApaRequester {
     public Response<ItemLookupResponse> itemLookupAsync(
             ItemLookupRequest request) throws ExecutionException,
             InterruptedException {
-        LOGGER.debug("DAPA001", "itemLookupAsync(ItemLookupRequest)", request);
         AWSECommerceServicePortType port = preparePort();
         ItemLookup itemLookup = prepareItemLookup(request);
         Response<ItemLookupResponse> response = port
                 .itemLookupAsync(itemLookup);
-        LOGGER.debug("DAPA002", "itemLookupAsync(ItemLookupRequest)", response);
         return response;
     }
 

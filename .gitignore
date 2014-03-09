@@ -6,3 +6,5 @@ target
 .springBeans
 src/test/resources/aws-config.properties
 /.git
+*.iml
+.idea

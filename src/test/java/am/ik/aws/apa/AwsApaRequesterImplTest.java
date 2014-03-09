@@ -41,13 +41,6 @@ import am.ik.aws.apa.jaxws.ItemSearchRequest;
 import am.ik.aws.apa.jaxws.ItemSearchResponse;
 
 public class AwsApaRequesterImplTest {
-    static {
-        System.setProperty(
-                "java.util.logging.config.file",
-                AwsApaRequesterImpl.class.getClassLoader()
-                        .getResource("logging.properties").getFile());
-    }
-
     protected AwsApaRequester requester = new AwsApaRequesterImpl();
 
     @Before
